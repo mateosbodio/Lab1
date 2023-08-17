@@ -12,6 +12,7 @@ public class Lab1 {
     //Prueba de GitHub adjunto mi nombre
 private int LautaroRodriguez;
 private int RosalesGuillermo;
+private int AgueroJuliana;
     public static void main(String[] args) {
         // TODO code application logic here
     }
