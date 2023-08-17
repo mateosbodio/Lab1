@@ -11,7 +11,7 @@ package lab1;
 public class Lab1 {
     //Prueba de GitHub adjunto mi nombre
 private int LautaroRodriguez;
-
+private int RosalesGuillermo;
     public static void main(String[] args) {
         // TODO code application logic here
     }
