@@ -26,6 +26,7 @@ public class tp3_lab1 {
     public static void main(String[] args) {
         System.out.println("GOOOLLLL");
         System.out.println("cambio");
+        new NewJFrame();
         
     }
     
