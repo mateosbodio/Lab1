@@ -15,6 +15,7 @@ private int RosalesGuillermo;
 private int AgueroJuliana;
 private int MateoSbodio;
 private int GustavoRosales;
+private int BrunoPalmucci;
 
     public static void main(String[] args) {
         System.out.println("hola");
