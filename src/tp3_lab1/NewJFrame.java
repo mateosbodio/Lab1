@@ -4,6 +4,8 @@
  */
 package tp3_lab1;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Mateo
@@ -35,14 +37,12 @@ public class NewJFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextField1.setText("Ingrese su email");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                jTextField1(evt);
             }
         });
 
-        jPass.setText("jPasswordField1");
         jPass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPassActionPerformed(evt);
@@ -54,6 +54,11 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel2.setText("Password:");
 
         jButton1.setText("Registrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,13 +103,39 @@ public class NewJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    private void jTextField1(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1
+        
+    }//GEN-LAST:event_jTextField1
 
     private void jPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPassActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jPassActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+ 
+    try {
+
+    
+        String nom= jTextField1.getText().trim().toLowerCase();
+          int pass= Integer.parseInt(jPass.getText());
+        if (nom.equals("alumno@ulp.edu.ar") && pass==12345678) {
+                JOptionPane.showMessageDialog(this, "Bienvenido a la Plataforma. ");
+                jTextField1.setText("");
+                jPass.setText("");
+        } else {
+            JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos. ");
+                jTextField1.setText("");
+                jPass.setText("");
+        } catch (NumberFormatException nf){
+                jTextField1.setText("");
+                jPass.setText("");
+            JOptionPane.showMessageDialog(this, "Contraseña Incorrecta. ");
+                };
+        }
+        // si ingresan letras en la contraseña se mostrara un alerta que solo deben ser numeros;
+     
+    
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
