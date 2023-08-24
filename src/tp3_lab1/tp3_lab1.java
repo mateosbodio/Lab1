@@ -5,10 +5,9 @@
 package tp3_lab1;
 
 /**
- *
- * @author Mateo
- */
-/*
+ * @author Lautaro Rodriguez
+ * @author Mateo Sbodio
+
 Ejercicio 1:
 
 Crea una aplicación GUI en Java que simule un formulario de login. La interfaz debe contener los siguientes elementos:
