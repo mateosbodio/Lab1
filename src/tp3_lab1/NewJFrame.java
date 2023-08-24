@@ -4,6 +4,8 @@
  */
 package tp3_lab1;
 
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +14,7 @@ import javax.swing.JOptionPane;
  */
 public class NewJFrame extends javax.swing.JFrame {
 
+   
     /**
      * Creates new form NewJFrame
      */
@@ -33,7 +36,6 @@ public class NewJFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jOptionPane1 = new javax.swing.JOptionPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,9 +77,7 @@ public class NewJFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(140, 140, 140)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 117, Short.MAX_VALUE)
-                .addComponent(jOptionPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(72, 72, 72))
+                .addGap(72, 451, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -90,14 +90,9 @@ public class NewJFrame extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addComponent(jPass, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jOptionPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addComponent(jButton1)
+                .addContainerGap(154, Short.MAX_VALUE))
         );
 
         pack();
@@ -112,26 +107,25 @@ public class NewJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jPassActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
- 
-    try {
 
-    
+try {
         String nom= jTextField1.getText().trim().toLowerCase();
           int pass= Integer.parseInt(jPass.getText());
         if (nom.equals("alumno@ulp.edu.ar") && pass==12345678) {
                 JOptionPane.showMessageDialog(this, "Bienvenido a la Plataforma. ");
-                jTextField1.setText("");
+                
                 jPass.setText("");
         } else {
             JOptionPane.showMessageDialog(this, "Usuario y/o contraseña incorrectos. ");
                 jTextField1.setText("");
                 jPass.setText("");
-        } catch (NumberFormatException nf){
+        }
+} catch (NumberFormatException nf){
                 jTextField1.setText("");
                 jPass.setText("");
             JOptionPane.showMessageDialog(this, "Contraseña Incorrecta. ");
-                };
-        }
+                };        
+        
         // si ingresan letras en la contraseña se mostrara un alerta que solo deben ser numeros;
      
     
@@ -165,10 +159,8 @@ public class NewJFrame extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new NewJFrame().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new NewJFrame().setVisible(true);
         });
     }
 
@@ -176,7 +168,6 @@ public class NewJFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JPasswordField jPass;
     private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
