@@ -67,9 +67,19 @@ public static TreeSet<Producto> lista=new TreeSet<>();
         jMenu4.setText("Consultas");
 
         jmRubro.setText("Por Rubro");
+        jmRubro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmRubroActionPerformed(evt);
+            }
+        });
         jMenu4.add(jmRubro);
 
         jmNombre.setText("Por Nombre");
+        jmNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmNombreActionPerformed(evt);
+            }
+        });
         jMenu4.add(jmNombre);
 
         jmPrecio.setText("Por Precio");
@@ -115,7 +125,23 @@ public static TreeSet<Producto> lista=new TreeSet<>();
 
     private void jmPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPrecioActionPerformed
         // TODO add your handling code here:
+         ConsultasPorPrecio pre= new ConsultasPorPrecio();
+        pre.setVisible(true);
+        pre.show();
+        
     }//GEN-LAST:event_jmPrecioActionPerformed
+
+    private void jmRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRubroActionPerformed
+        // TODO add your handling code here:
+        ConsultasPorRubro rubr= new ConsultasPorRubro(); 
+        rubr.show();
+    }//GEN-LAST:event_jmRubroActionPerformed
+
+    private void jmNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNombreActionPerformed
+        // TODO add your handling code here:
+        ConsultasPorNombre nom= new ConsultasPorNombre();
+        nom.show();
+    }//GEN-LAST:event_jmNombreActionPerformed
 
     /**
      * @param args the command line arguments
