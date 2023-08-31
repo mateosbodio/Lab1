@@ -45,11 +45,11 @@ public static TreeSet<Producto> lista=new TreeSet<>();
         escritorio.setLayout(escritorioLayout);
         escritorioLayout.setHorizontalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 809, Short.MAX_VALUE)
+            .addGap(0, 821, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 584, Short.MAX_VALUE)
+            .addGap(0, 596, Short.MAX_VALUE)
         );
 
         jMenu3.setText("Administracion");
@@ -98,15 +98,11 @@ public static TreeSet<Producto> lista=new TreeSet<>();
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio)
-                .addContainerGap())
+            .addComponent(escritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(escritorio)
-                .addContainerGap())
+            .addComponent(escritorio)
         );
 
         pack();
@@ -125,22 +121,33 @@ public static TreeSet<Producto> lista=new TreeSet<>();
 
     private void jmPrecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmPrecioActionPerformed
         // TODO add your handling code here:
-         ConsultasPorPrecio pre= new ConsultasPorPrecio();
+       escritorio.removeAll();
+       escritorio.repaint();
+        ConsultasPorPrecio pre= new ConsultasPorPrecio();
         pre.setVisible(true);
-        pre.show();
+       escritorio.add(pre);
+       escritorio.moveToFront(pre);
         
     }//GEN-LAST:event_jmPrecioActionPerformed
 
     private void jmRubroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmRubroActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
         ConsultasPorRubro rubr= new ConsultasPorRubro(); 
-        rubr.show();
+        rubr.setVisible(true);
+        escritorio.add(rubr);
+        escritorio.moveToFront(rubr);
     }//GEN-LAST:event_jmRubroActionPerformed
 
     private void jmNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmNombreActionPerformed
         // TODO add your handling code here:
+        escritorio.removeAll();
+        escritorio.repaint();
         ConsultasPorNombre nom= new ConsultasPorNombre();
         nom.show();
+        escritorio.add(nom);
+        escritorio.moveToFront(nom);
     }//GEN-LAST:event_jmNombreActionPerformed
 
     /**
