@@ -8,7 +8,7 @@ import javax.swing.table.DefaultTableModel;
 
 
 public class ConsultasPorNombre extends javax.swing.JInternalFrame {
-private final DefaultTableModel modelo=new DefaultTableModel();
+private  DefaultTableModel modelo=new DefaultTableModel();
     /**
      * Creates new form BusquedaNombre
      */
@@ -22,7 +22,7 @@ private final DefaultTableModel modelo=new DefaultTableModel();
         modelo.addColumn("Descripcion");
         modelo.addColumn("Precio");
         modelo.addColumn("Stock");
-        jTProducto.setModel(modelo);
+        jTtabla.setModel(modelo);
     }
 
     /**
@@ -36,15 +36,29 @@ private final DefaultTableModel modelo=new DefaultTableModel();
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        jTextNom1 = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTProducto = new javax.swing.JTable();
+        jTtabla = new javax.swing.JTable();
 
         jLabel1.setText("Listado por Nombre");
 
         jLabel2.setText("Escriba los primeros caracteres:");
 
-        jTProducto.setModel(new javax.swing.table.DefaultTableModel(
+        jTextNom1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextNom1ActionPerformed(evt);
+            }
+        });
+        jTextNom1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextNom1KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextNom1KeyReleased(evt);
+            }
+        });
+
+        jTtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -55,7 +69,7 @@ private final DefaultTableModel modelo=new DefaultTableModel();
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTProducto);
+        jScrollPane1.setViewportView(jTtabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -67,7 +81,7 @@ private final DefaultTableModel modelo=new DefaultTableModel();
                         .addGap(27, 27, 27)
                         .addComponent(jLabel2)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jTextNom1, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 683, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -84,21 +98,55 @@ private final DefaultTableModel modelo=new DefaultTableModel();
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(54, 54, 54)
+                    .addComponent(jTextNom1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 392, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jTextNom1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNom1ActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_jTextNom1ActionPerformed
+private void borrarFilas(){
+        int filas = jTtabla.getRowCount() - 1;
+        
+        for(int f = filas;f>=0;f--){
+            modelo.removeRow(f);
+        }
+    }
+    private void jTextNom1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNom1KeyPressed
+        // TODO add your handling code here:
+   
+    }//GEN-LAST:event_jTextNom1KeyPressed
+
+    private void jTextNom1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextNom1KeyReleased
+        // TODO add your handling code here:
+        borrarFilas();
+        for (Producto pro : Menu_General.lista) {
+      
+        if(pro.getDescripcion().toLowerCase().startsWith(jTextNom1.getText().toLowerCase())){
+            
+          modelo.addRow(new Object[]{
+          pro.getCodigo(),
+          pro.getDescripcion(),
+          pro.getPrecio(),
+          pro.getStock(),
+         });
+      }      
+        }
+      
+    }//GEN-LAST:event_jTextNom1KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTProducto;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextNom1;
+    private javax.swing.JTable jTtabla;
     // End of variables declaration//GEN-END:variables
 }

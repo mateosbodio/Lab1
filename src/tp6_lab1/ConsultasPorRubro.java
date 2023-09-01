@@ -4,11 +4,15 @@
  */
 package tp6_lab1;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Mateo
  */
 public class ConsultasPorRubro extends javax.swing.JInternalFrame {
+
+ private  DefaultTableModel modelo=new DefaultTableModel();
 
     /**
      * Creates new form NewJInternalFrame
@@ -28,20 +32,36 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
 
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        jCcategoria = new javax.swing.JComboBox<>();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jtTabla = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jTtabla = new javax.swing.JTable();
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setText("Listado de Productos por Rubro");
 
         jLabel4.setText("Elija rubro:");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Limpieza", "Perfumeria" }));
+        jCcategoria.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Comestible", "Limpieza", "Perfumeria" }));
+        jCcategoria.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                jCcategoriaItemStateChanged(evt);
+            }
+        });
+        jCcategoria.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jCcategoriaMouseClicked(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jCcategoriaMouseReleased(evt);
+            }
+        });
+        jCcategoria.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCcategoriaActionPerformed(evt);
+            }
+        });
 
-        jtTabla.setModel(new javax.swing.table.DefaultTableModel(
+        jTtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -49,14 +69,10 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Descripcion", "Precio", "Stock"
             }
         ));
-        jScrollPane2.setViewportView(jtTabla);
-
-        jButton1.setText("Buscar");
-
-        jButton2.setText("Inicio");
+        jScrollPane2.setViewportView(jTtabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -70,16 +86,12 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 398, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 629, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(26, 26, 26)
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(169, 169, 169)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
-                                .addComponent(jButton2)))))
-                .addContainerGap(175, Short.MAX_VALUE))
+                                .addComponent(jCcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(110, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,25 +101,60 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
                 .addGap(26, 26, 26)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addGap(66, 66, 66)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 133, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(274, Short.MAX_VALUE))
+                    .addComponent(jCcategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(67, 67, 67)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(201, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void borrarFilas(){
+        int filas = jTtabla.getRowCount() - 1;
+        
+        for(int f = filas;f>0;f--){
+        modelo.removeRow(f);
+        }
+    }
+
+    private void jCcategoriaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCcategoriaMouseClicked
+        // TODO add your handling code here:
+     
+    }//GEN-LAST:event_jCcategoriaMouseClicked
+
+    private void jCcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCcategoriaActionPerformed
+        // TODO add your handling code here:
+             //borrarFilas();
+        System.out.println("holaaa");  
+        for (Producto pro : Menu_General.lista) {
+      if (pro.getRubro().toLowerCase().equals((String)jCcategoria.getSelectedItem())){
+          System.out.println("hola entrando al if");
+          modelo.addRow(new Object[]{
+          pro.getCodigo(),
+          pro.getDescripcion(),
+          pro.getPrecio(),
+          pro.getStock(),
+      });
+            }
+        
+      }      
+    }//GEN-LAST:event_jCcategoriaActionPerformed
+
+    private void jCcategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCcategoriaItemStateChanged
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_jCcategoriaItemStateChanged
+
+    private void jCcategoriaMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jCcategoriaMouseReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCcategoriaMouseReleased
 
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox2;
+    private javax.swing.JComboBox<String> jCcategoria;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jtTabla;
+    private javax.swing.JTable jTtabla;
     // End of variables declaration//GEN-END:variables
 }

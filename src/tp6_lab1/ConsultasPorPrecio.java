@@ -13,7 +13,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ConsultasPorPrecio extends javax.swing.JInternalFrame {
 
-    private final DefaultTableModel defaultTableModel= new DefaultTableModel();
+private DefaultTableModel modelo=new DefaultTableModel();
     
     
     public ConsultasPorPrecio() {
@@ -32,20 +32,32 @@ public class ConsultasPorPrecio extends javax.swing.JInternalFrame {
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        jText1 = new javax.swing.JTextField();
+        jText2 = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTtabla = new javax.swing.JTable();
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Listado por precio");
 
         jLabel2.setText("entre $");
 
+        jText1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jText1KeyTyped(evt);
+            }
+        });
+
+        jText2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jText2KeyReleased(evt);
+            }
+        });
+
         jLabel4.setText("y");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTtabla.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -53,33 +65,30 @@ public class ConsultasPorPrecio extends javax.swing.JInternalFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Codigo", "Descripcion", "Precio", "Stock"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTtabla);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 746, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(88, 88, 88)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jText1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel4)
+                        .addGap(28, 28, 28)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jLabel4)
-                                .addGap(28, 28, 28)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(414, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jText2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -89,9 +98,9 @@ public class ConsultasPorPrecio extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jText1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jText2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(295, Short.MAX_VALUE))
@@ -99,6 +108,34 @@ public class ConsultasPorPrecio extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+private void borrarFilas(){
+        int filas = jTtabla.getRowCount() - 1;
+        
+        for(int f = filas;f>=0;f--){
+            modelo.removeRow(f);
+        }
+    }
+    private void jText1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText1KeyTyped
+        // TODO add your handling code here:
+    
+    }//GEN-LAST:event_jText1KeyTyped
+
+    private void jText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText2KeyReleased
+        // TODO add your handling code here:
+         borrarFilas();
+       for (Producto pre : Menu_General.lista) {
+      
+            if(jText1.equals(pre.getPrecio()) ){
+   
+          modelo.addRow(new Object[]{
+          pre.getCodigo(),
+          pre.getDescripcion(),
+          pre.getPrecio(),
+          pre.getStock(),
+      });
+            }
+      }    
+    }//GEN-LAST:event_jText2KeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -106,17 +143,17 @@ public class ConsultasPorPrecio extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
+    private javax.swing.JTextField jText1;
+    private javax.swing.JTextField jText2;
+    private javax.swing.JTable jTtabla;
     // End of variables declaration//GEN-END:variables
 
     private void armarCabecera(){
-    defaultTableModel.addColumn("Codigo");
-    defaultTableModel.addColumn("Descripcion");
-    defaultTableModel.addColumn("Precio");
-    defaultTableModel.addColumn("Stock");
-    jTable1.setModel(defaultTableModel);
+    modelo.addColumn("Codigo");
+    modelo.addColumn("Descripcion");
+    modelo.addColumn("Precio");
+    modelo.addColumn("Stock");
+    jTtabla.setModel(modelo);
 }
 }
 

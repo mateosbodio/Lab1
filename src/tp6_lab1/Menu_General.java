@@ -5,7 +5,6 @@
 package tp6_lab1;
 
 import tp6_lab1.Producto;
-import tp6_lab1.ProductoInternalFrane;
 import java.util.TreeSet;
 
 /**
@@ -19,8 +18,16 @@ public static TreeSet<Producto> lista=new TreeSet<>();
      */
     public Menu_General() {
         initComponents();
+        cargarProductos();
     }
-
+private void cargarProductos(){
+        lista.add(new Producto(10,"azucar x 1kg", 560, 5, "Comestible"));
+        lista.add(new Producto(12,"jabon", 200, 10, "Perfumeria"));
+        lista.add(new Producto(2,"yerba mate", 850.78, 5, "Comestible"));
+        lista.add(new Producto(1,"desodorante", 1020, 7,"Perfumeria"));
+        lista.add(new Producto(14,"detergente", 700, 9, "Limpieza"));
+        lista.add(new Producto(5,"escoba", 2400.22, 2, "Limpieza"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
