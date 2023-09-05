@@ -5,6 +5,7 @@
  */
 package tp6_lab1;
 
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -123,9 +124,12 @@ private void borrarFilas(){
     private void jText2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jText2KeyReleased
         // TODO add your handling code here:
          borrarFilas();
+try {
+    double p1= Double.parseDouble(jText1.getText());
+    double p2= Double.parseDouble(jText2.getText());
        for (Producto pre : Menu_General.lista) {
       
-            if(jText1.equals(pre.getPrecio()) ){
+            if(pre.getPrecio() >= p1 && pre.getPrecio() <=p2){
    
           modelo.addRow(new Object[]{
           pre.getCodigo(),
@@ -134,7 +138,13 @@ private void borrarFilas(){
           pre.getStock(),
       });
             }
-      }    
+       }
+       } catch (NumberFormatException e){
+           JOptionPane.showMessageDialog(this, "complete los campos. ");
+           borrarFilas();
+           jText1.requestFocus();
+           
+       }    
     }//GEN-LAST:event_jText2KeyReleased
 
 

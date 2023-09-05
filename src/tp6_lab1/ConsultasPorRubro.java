@@ -19,6 +19,7 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
      */
     public ConsultasPorRubro() {
         initComponents();
+        armarCabecera();
     }
 
     /**
@@ -110,9 +111,9 @@ public class ConsultasPorRubro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 private void borrarFilas(){
-        int filas = jTtabla.getRowCount() - 1;
+        int filas = modelo.getRowCount() - 1;
         
-        for(int f = filas;f>0;f--){
+        for(int f = filas;f>=0;f--){
         modelo.removeRow(f);
         }
     }
@@ -124,11 +125,11 @@ private void borrarFilas(){
 
     private void jCcategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCcategoriaActionPerformed
         // TODO add your handling code here:
-             //borrarFilas();
-        System.out.println("holaaa");  
+    borrarFilas();
         for (Producto pro : Menu_General.lista) {
-      if (pro.getRubro().toLowerCase().equals((String)jCcategoria.getSelectedItem())){
-          System.out.println("hola entrando al if");
+             
+      if (pro.getRubro().toLowerCase().equalsIgnoreCase((String)jCcategoria.getSelectedItem())){
+          borrarFilas();
           modelo.addRow(new Object[]{
           pro.getCodigo(),
           pro.getDescripcion(),
@@ -136,10 +137,16 @@ private void borrarFilas(){
           pro.getStock(),
       });
             }
-        
-      }      
+       
+        }    
     }//GEN-LAST:event_jCcategoriaActionPerformed
-
+private void armarCabecera(){
+    modelo.addColumn("Codigo");
+    modelo.addColumn("Descripcion");
+    modelo.addColumn("Precio");
+    modelo.addColumn("Stock");
+    jTtabla.setModel(modelo);
+}
     private void jCcategoriaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_jCcategoriaItemStateChanged
         // TODO add your handling code here:
     

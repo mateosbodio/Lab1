@@ -26,7 +26,6 @@ private void cargarProductos(){
         lista.add(new Producto(2,"yerba mate", 850.78, 5, "Comestible"));
         lista.add(new Producto(1,"desodorante", 1020, 7,"Perfumeria"));
         lista.add(new Producto(14,"detergente", 700, 9, "Limpieza"));
-        lista.add(new Producto(5,"escoba", 2400.22, 2, "Limpieza"));
     }
     /**
      * This method is called from within the constructor to initialize the form.
